@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../actions';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const FormContainer = styled.div`
   margin-top: 20px;
@@ -16,9 +18,11 @@ const Input = styled.input`
 const AddButton = styled.button`
   background-color: #007bff;
   color: #fff;
-  border: none;
+  border: 1,5px outset #CCC;
   padding: 5px 10px;
   cursor: pointer;
+  display: flex-end;
+  align-items: center;
 `;
 
 const TodoForm = () => {
@@ -54,7 +58,10 @@ const TodoForm = () => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <AddButton onClick={handleSubmit}>Agregar</AddButton>
+      <AddButton onClick={handleSubmit}>
+    <FontAwesomeIcon icon={faPlus} style={{ marginRight: '5px' }} />
+    Agregar
+    </AddButton>
     </FormContainer>
   );
 };

@@ -25,8 +25,8 @@ const TodoText = styled.span`
 const DeleteButton = styled.button`
   background-color: #ff0000;
   color: #fff;
-  border: none;
-  padding: 5px 10px;
+  border: 1px outset #CCC;
+  padding: 6px 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@ const TodoList = () => {
             </TodoText>
             <DeleteButton onClick={() => dispatch(deleteTodo(todo.id))}>
               <FontAwesomeIcon icon={faTrash} style={{ marginRight: '5px' }} />
-              Eliminar
+              
               </DeleteButton>
           </TodoItem>
         ))}
