@@ -2,6 +2,24 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../actions';
+import styled from 'styled-components';
+
+const FormContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const Input = styled.input`
+  margin-right: 10px;
+  padding: 5px;
+`;
+
+const AddButton = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+`;
 
 const TodoForm = () => {
   const [name, setName] = useState('');
@@ -22,22 +40,22 @@ const TodoForm = () => {
   };
 
   return (
-    <div>
-      <h2>Agregar Tarea</h2>
-      <input
+    <FormContainer>
+      <h2>Adicionar Tarea</h2>
+      <Input
         type="text"
         placeholder="Nombre de la tarea"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
+      <Input
         type="text"
         placeholder="Descripción de la tarea"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button onClick={handleSubmit}>Agregar</button>
-    </div>
+      <AddButton onClick={handleSubmit}>Agregar</AddButton>
+    </FormContainer>
   );
 };
 

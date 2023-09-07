@@ -2,6 +2,35 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTodo, deleteTodo } from '../actions';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+
+const TodoItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+`;
+
+const Checkbox = styled.input`
+  margin-right: 10px;
+`;
+
+const TodoText = styled.span`
+  flex: 1;
+  text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
+`;
+
+const DeleteButton = styled.button`
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todos);
@@ -12,17 +41,20 @@ const TodoList = () => {
       <h2>Lista de Tareas</h2>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>
-            <input
+          <TodoItem key={todo.id}>
+            <Checkbox
               type="checkbox"
               checked={todo.completed}
               onChange={() => dispatch(toggleTodo(todo.id))}
             />
-            <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+            <TodoText completed={todo.completed}>
               {todo.name} - {todo.description}
-            </span>
-            <button onClick={() => dispatch(deleteTodo(todo.id))}>Eliminar</button>
-          </li>
+            </TodoText>
+            <DeleteButton onClick={() => dispatch(deleteTodo(todo.id))}>
+              <FontAwesomeIcon icon={faTrash} style={{ marginRight: '5px' }} />
+              Eliminar
+              </DeleteButton>
+          </TodoItem>
         ))}
       </ul>
     </div>
@@ -30,4 +62,3 @@ const TodoList = () => {
 };
 
 export default TodoList;
-
